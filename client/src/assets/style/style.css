@@ -1,0 +1,63 @@
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.7);
+  border-radius: 4px;
+}
+
+.loading_text{
+  color: white;
+  font-stretch: normal;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+.slider {
+  position: absolute;
+  width: 200px;
+  height: 2px;
+  margin-top:50px;
+}
+.line {
+  position: absolute;
+  background: #4a8df8;
+  width: 200px;
+  height: 2px;
+}
+.break {
+  position: absolute;
+  background: #222;
+  width: 6px;
+  height: 2px;
+}
+
+.dot1 {
+  animation: loading 2s infinite;
+}
+.dot2 {
+  animation: loading 2s 0.5s infinite;
+}
+.dot3 {
+  animation: loading 2s 1s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: 0;
+  }
+  90% {
+    left: 195px;
+    opacity: 1;
+  }
+  100% {
+    left: 196px;
+    opacity: 0;
+  }
+}
