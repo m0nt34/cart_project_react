@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "../table/Table";
 import Input from "../ui/Input";
-import PaginationBar from "../ui/PaginationBar";
+import PaginationBar from "../ui/paginationBar/PaginationBar";
 const Cart = () => {
   return (
     <div className="flex flex-col justify-center px-14 items-center max-w-7xl w-full h-screen">

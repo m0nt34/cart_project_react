@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import TableRoll from "./TableRoll";
 import TableHeader from "./TableHeader";
+import { useSearchParams } from "react-router-dom";
 import "../../assets/style/style.css";
 import axios from "axios";
 const Table = () => {
   const [games, setGames] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [page] = useSearchParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/get/games?pageNum=0&limitItems=6`)
+      .get(
+        `http://localhost:3000/get/games?pageNum=${page.get(
+          "page"
+        )}&limitItems=4`
+      )
       .then((res) => {
         setGames(res.data);
         setLoading(false);
@@ -18,7 +23,7 @@ const Table = () => {
         console.log(err);
         setLoading(false);
       });
-  }, []);
+  }, [page.get("page")]);
   return (
     <table className="flex flex-col max-h-[600px] h-full max-w-7xl w-full bg-blue-800 rounded-xl p-2">
       <thead className="w-full">
