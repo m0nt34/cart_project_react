@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-const PageNumbers = ({ lastPage, setPage, pages }) => {
+import React from "react";
+
+const PaginationsNums = ({ lastPage, setPage, pages }) => {
   return (
-    <ul className="flex justify-center items-center text-2xl text-white gap-5 cursor-pointer">
-      {pages.get("page") !== "1" && (
+    <ul className="flex justify-center items-center text-2xl text-white gap-5 ">
+      {pages.get("page") !== "1" && lastPage >= 4 && (
         <li
+          className="hover:opacity-80 transition cursor-pointer"
           onClick={() => {
             const newPage =
               parseInt(pages.get("page")) >= lastPage - 2
@@ -18,9 +19,11 @@ const PageNumbers = ({ lastPage, setPage, pages }) => {
             : parseInt(pages.get("page")) - 1}
         </li>
       )}
-      <li
+      {lastPage>=3&&<li
         className={
-          parseInt(pages.get("page")) <= lastPage - 2 ? "underline" : null
+          parseInt(pages.get("page")) <= lastPage - 2
+            ? "underline pointer-events-none"
+            : "hover:opacity-80 transition cursor-pointer"
         }
         onClick={() => {
           const newPage =
@@ -33,10 +36,12 @@ const PageNumbers = ({ lastPage, setPage, pages }) => {
         {parseInt(pages.get("page")) >= lastPage - 2
           ? lastPage - 2
           : parseInt(pages.get("page"))}
-      </li>
-      <li
+      </li>}
+      {lastPage>=2&&<li
         className={
-          parseInt(pages.get("page")) === lastPage - 1 ? "underline" : null
+          parseInt(pages.get("page")) === lastPage - 1
+            ? "underline pointer-events-none"
+            : "hover:opacity-80 transition cursor-pointer"
         }
         onClick={() => {
           const newPage =
@@ -49,17 +54,24 @@ const PageNumbers = ({ lastPage, setPage, pages }) => {
         {parseInt(pages.get("page")) >= lastPage - 2
           ? lastPage - 1
           : parseInt(pages.get("page")) + 1}
-      </li>
-      {pages.get("page") === "1" && (
-        <li onClick={() => setPage(parseInt(pages.get("page")) + 2)}>
+      </li>}
+      {pages.get("page") === "1" && lastPage >= 4 && (
+        <li
+          className="hover:opacity-80 transition cursor-pointer"
+          onClick={() => setPage(parseInt(pages.get("page")) + 2)}
+        >
           {parseInt(pages.get("page")) + 2}
         </li>
       )}
-      {lastPage - 2 > parseInt(pages.get("page")) && <li>...</li>}
+      {lastPage - 2 > parseInt(pages.get("page")) && lastPage > 4 && (
+        <li className="pointer-events-none">...</li>
+      )}
 
       <li
         className={
-          parseInt(pages.get("page")) === lastPage ? "underline" : null
+          parseInt(pages.get("page")) === lastPage
+            ? "underline pointer-events-none"
+            : "hover:opacity-80 transition cursor-pointer"
         }
         onClick={() => setPage(lastPage)}
       >
@@ -69,4 +81,4 @@ const PageNumbers = ({ lastPage, setPage, pages }) => {
   );
 };
 
-export default PageNumbers;
+export default PaginationsNums;
