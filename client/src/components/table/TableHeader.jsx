@@ -12,9 +12,10 @@ const TableHeader = ({
   const [sortDEC, setSortDEC] = useState(false);
   const [page] = useSearchParams();
   const [limit] = useSearchParams();
+  const [searchWord] = useSearchParams();
   useEffect(() => {
     setSortDEC(false);
-  }, [page.get("page"), limit.get("limit")]);
+  }, [page.get("page"), limit.get("limit"),searchWord.get('searchWord')]);
   return (
     <th className={className}>
       <button

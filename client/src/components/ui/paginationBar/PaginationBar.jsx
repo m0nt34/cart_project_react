@@ -23,10 +23,10 @@ const PaginationBar = () => {
   };
   useEffect(() => {
     const fetchLastPage = async () => {
-      console.log(pages.get("searchWord"));
       try {
         const data = await getLastPage(
-          parseInt(pages.get("limit"), pages.get("searchWord"))
+          parseInt(pages.get("limit")),
+         pages.get("searchWord")
         );
         setPages(
           (prev) => {
@@ -39,9 +39,10 @@ const PaginationBar = () => {
         console.error("Error fetching last page:", error);
       }
     };
+    
     fetchLastPage();
     setPage(1);
-  }, [pages.get("limit"),pages.get("searchWord")]);
+  }, [pages.get("limit"), pages.get("searchWord")]);
   useEffect(() => {
     setPages(
       (prev) => {

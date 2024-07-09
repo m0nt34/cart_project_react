@@ -1,10 +1,9 @@
 import axios from "axios";
 
-export const getLastPage = async ( limit ,search) => {
+export const getLastPage = async ( limit ,searchWord) => {
   try {
-    console.log(search);
     const res = await axios.get(
-      `http://localhost:3000/get/pages?limitItems=${limit}&searchWord=${search}`
+      `http://localhost:3000/get/pages?limitItems=${limit}&searchWord=${searchWord}`
     );
     
     return res.data;

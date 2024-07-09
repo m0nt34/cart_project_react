@@ -24,7 +24,7 @@ const LimitItems = () => {
   return (
     <div
       className={`flex items-center justify-center bg-blue-800 rounded-full cursor-pointer px-3 py-2 gap-2  ${
-        active ? "pr-8" : "gap-0"
+        active ? "pr-8" : "gap-0 pr-1"
       } `}
     >
       <button

@@ -40,15 +40,15 @@ export default {
       if (limitItems <= 0) {
         return res.status(400).json({ error: "Invalid pagination parameters" });
       }
-      console.log(searchWord);
-      const docs = !searchWord===""
-        ? await Games.countDocuments({
-            $or: [
-              { Name: { $regex: `^${searchWord}`, $options: "i" } },
-              { Category: { $regex: `^${searchWord}`, $options: "i" } },
-            ],
-          })
-        : await Games.countDocuments();
+      const docs =
+        searchWord.length === 0
+          ? await Games.countDocuments()
+          : await Games.countDocuments({
+              $or: [
+                { Name: { $regex: `^${searchWord}`, $options: "i" } },
+                { Category: { $regex: `^${searchWord}`, $options: "i" } },
+              ],
+            });
       if (docs % limitItems === 0) {
         const pages = docs / limitItems;
         return res.status(200).json(pages);
