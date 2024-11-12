@@ -13,14 +13,10 @@ configureApp(app);
 app.use("/get", apiRoutes);
 app.use("/", routes);
 mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Database connected");
 
-    // Start the server after successful database connection
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
